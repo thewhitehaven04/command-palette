@@ -7,6 +7,7 @@ import React, {
     type ReactNode,
 } from "react"
 import classes from "./CommandPalette.module.css"
+import type { ICommandPaletteContainerProps, ICommandPaletteItemProps } from "./types"
 
 const noop = () => {}
 
@@ -43,12 +44,25 @@ const Root = ({ children, defaultSlice }: { children?: ReactNode; defaultSlice: 
     )
 }
 
-const Container = ({ children }: ComponentProps<"div">) => (
-    <div className={classes.overlay}>
-        <div className={classes.transparent_overlay}></div>
-        <div className={`${classes.container} ${classes.p_sm}`}>{children}</div>
-    </div>
-)
+const variantMap = {
+    sm: classes["container-sm"],
+    md: classes["container-md"],
+    lg: classes["container-lg"],
+} as const
+
+const Container = ({ children, variant = "md", ...rest }: ICommandPaletteContainerProps) => {
+    return (
+        <div className={classes.overlay}>
+            <div className={classes.transparent_overlay}></div>
+            <div
+                className={`${classes.container} ${classes.p_sm} ${variantMap[variant]}`}
+                {...rest}
+            >
+                {children}
+            </div>
+        </div>
+    )
+}
 
 const TabsContainer = (props: ComponentProps<"ul">) => {
     return <ul className={`${classes.row} ${classes.sm_gap} ${props.className}`} {...props}></ul>
@@ -58,7 +72,12 @@ const Tab = ({ children, tabName, ...rest }: ComponentProps<"button"> & { tabNam
     const { setSlice } = useContext(SliceContext)
     return (
         <li>
-            <button type="button" {...rest} className={classes.tab_button} onClick={() => setSlice(tabName)}>
+            <button
+                type="button"
+                {...rest}
+                className={classes.tab_button}
+                onClick={() => setSlice(tabName)}
+            >
                 {children}
             </button>
         </li>
@@ -87,10 +106,12 @@ const ItemGroup = ({ children, slice }: { children: ReactNode; slice: string }) 
     ) : null
 }
 
-const Item = ({ children, searchTerm }: { children: ReactNode; searchTerm: string }) => {
+const Item = ({ children, searchTerm, className, ...rest }: ICommandPaletteItemProps) => {
     const { searchTerm: contextSearchTerm } = useContext(SearchTermContext)
     return (contextSearchTerm && searchTerm?.includes(contextSearchTerm)) || !contextSearchTerm ? (
-        <li>{children}</li>
+        <li className={`${classes.item} ${className}`} {...rest}>
+            {children}
+        </li>
     ) : null
 }
 

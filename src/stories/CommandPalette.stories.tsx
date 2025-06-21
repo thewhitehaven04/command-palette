@@ -1,9 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 import CommandPalette from "../CommandPalette"
+import type { ICommandPaletteContainerProps } from "../types"
 
-const Palette = (props: { defaultSlice: string }) => (
+const Palette = (props: {
+    defaultSlice: string
+    variant: ICommandPaletteContainerProps["variant"]
+}) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <CommandPalette.Container>
+        <CommandPalette.Container variant={props.variant}>
             <CommandPalette.Root defaultSlice={props.defaultSlice}>
                 <CommandPalette.Search />
                 <CommandPalette.TabsContainer>
@@ -28,12 +32,31 @@ const Palette = (props: { defaultSlice: string }) => (
 
 const meta: Meta = {
     title: "Example/Command Palette",
+    component: Palette
 } satisfies Meta<typeof Palette>
 
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {
-    render: () => <Palette defaultSlice="F1" />,
+export const Small: Story = {
+    args: {
+        defaultSlice: "F1",
+        variant: "sm",
+    }
 }
+
+export const Medium: Story = {
+    args: {
+        defaultSlice: "F1",
+        variant: "md",
+    }
+}
+
+export const Large: Story = {
+    args: {
+        defaultSlice: "F1",
+        variant: "lg",
+    }
+}
+
 
 export default meta

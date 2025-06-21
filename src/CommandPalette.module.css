@@ -3,6 +3,10 @@ li {
     padding: 0px;
 }
 
+ul {
+    padding: 0px;
+}
+
 .overlay {
     position: fixed;
     width: 100vw;
@@ -20,15 +24,31 @@ li {
 .container {
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 40%;
+    transform: translate(-50%, -40%);
     z-index: 20;
-    min-height: 300px;
-    min-width: 500px;
     background-color: white;
 
     border-radius: 8px;
     border: 1px solid gainsboro;
+}
+
+.container-sm {
+    min-height: 300px;
+    min-width: 500px;
+    padding: 8px;
+}
+
+.container-md {
+    min-height: 360px;
+    min-width: 560px;
+    padding: 16px;
+}
+
+.container-lg {
+    min-height: 420px;
+    min-width: 650px;
+    padding: 32px;
 }
 
 input {
@@ -56,10 +76,6 @@ button {
     gap: 4px;
 }
 
-.p_sm {
-    padding: 4px;
-}
-
 .row {
     display: flex;
     flex-direction: row;
@@ -77,4 +93,11 @@ button {
 .tab_active {
     background-color: gainsboro;
     border: 1px solid gray;
+}
+
+.item {
+    border: 1px solid gainsboro;
+    border-radius: 4px;
+
+    padding: 4px;
 }
