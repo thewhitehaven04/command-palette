@@ -65,17 +65,17 @@ const Container = ({ children, variant = "md", ...rest }: ICommandPaletteContain
 }
 
 const TabsContainer = (props: ComponentProps<"ul">) => {
-    return <ul className={`${classes.row} ${classes.sm_gap} ${props.className}`} {...props}></ul>
+    return <ul className={`${classes.row} ${classes["sm-gap"]} ${props.className}`} {...props}></ul>
 }
 
 const Tab = ({ children, tabName, ...rest }: ComponentProps<"button"> & { tabName: string }) => {
-    const { setSlice } = useContext(SliceContext)
+    const { setSlice, slice } = useContext(SliceContext)
     return (
         <li>
             <button
                 type="button"
                 {...rest}
-                className={classes.tab_button}
+                className={`${classes.tab_button} ${slice === tabName ? classes.tab_active : ""}`}
                 onClick={() => setSlice(tabName)}
             >
                 {children}
@@ -87,7 +87,7 @@ const Tab = ({ children, tabName, ...rest }: ComponentProps<"button"> & { tabNam
 const Search = (props: ComponentProps<"input">) => {
     const { searchTerm, setSearchTerm } = useContext(SearchTermContext)
     return (
-        <div className={`${classes.stack} ${classes.sm_gap}, ${classes.p_sm}`}>
+        <div className={`${classes.stack} ${classes.sm_gap}}`}>
             <input
                 type="text"
                 value={searchTerm || ""}
@@ -102,7 +102,7 @@ const ItemGroup = ({ children, slice }: { children: ReactNode; slice: string }) 
     const { slice: contextSlice } = useContext(SliceContext)
 
     return contextSlice === slice ? (
-        <ul className={`${classes.stack} ${classes.sm_gap}`}>{children}</ul>
+        <ul className={`${classes.stack} ${classes["md-gap"]}`}>{children}</ul>
     ) : null
 }
 
@@ -115,4 +115,12 @@ const Item = ({ children, searchTerm, className, ...rest }: ICommandPaletteItemP
     ) : null
 }
 
-export default { Container, Root, Search, ItemGroup, Item, TabsContainer, Tab }
+const Header = ({ children }: { children: ReactNode }) => {
+    return (
+        <div className={`${classes.stack} ${classes["sm-gap"]} ${classes["mb-md"]}`}>
+            {children}
+        </div>
+    )
+}
+
+export default { Container, Root, Search, ItemGroup, Item, TabsContainer, Tab, Header }

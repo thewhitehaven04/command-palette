@@ -6,14 +6,16 @@ const Palette = (props: {
     defaultSlice: string
     variant: ICommandPaletteContainerProps["variant"]
 }) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <CommandPalette.Container variant={props.variant}>
             <CommandPalette.Root defaultSlice={props.defaultSlice}>
-                <CommandPalette.Search />
-                <CommandPalette.TabsContainer>
-                    <CommandPalette.Tab tabName="F1">F1</CommandPalette.Tab>
-                    <CommandPalette.Tab tabName="WEC">WEC</CommandPalette.Tab>
-                </CommandPalette.TabsContainer>
+                <CommandPalette.Header>
+                    <CommandPalette.Search />
+                    <CommandPalette.TabsContainer>
+                        <CommandPalette.Tab tabName="F1">F1</CommandPalette.Tab>
+                        <CommandPalette.Tab tabName="WEC">WEC</CommandPalette.Tab>
+                    </CommandPalette.TabsContainer>
+                </CommandPalette.Header>
                 <CommandPalette.ItemGroup slice="F1">
                     <CommandPalette.Item searchTerm="SF-25">SF-25</CommandPalette.Item>
                     <CommandPalette.Item searchTerm="W16">W16</CommandPalette.Item>
@@ -32,7 +34,7 @@ const Palette = (props: {
 
 const meta: Meta = {
     title: "Example/Command Palette",
-    component: Palette
+    component: Palette,
 } satisfies Meta<typeof Palette>
 
 type Story = StoryObj<typeof meta>
@@ -41,22 +43,21 @@ export const Small: Story = {
     args: {
         defaultSlice: "F1",
         variant: "sm",
-    }
+    },
 }
 
 export const Medium: Story = {
     args: {
         defaultSlice: "F1",
         variant: "md",
-    }
+    },
 }
 
 export const Large: Story = {
     args: {
         defaultSlice: "F1",
         variant: "lg",
-    }
+    },
 }
-
 
 export default meta
