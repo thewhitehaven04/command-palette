@@ -175,4 +175,11 @@ kbd {
 .item-group {
     max-height: 100%; 
     overflow-y: scroll;
+
+    scroll-snap-type: y mandatory;
+    scroll-snap-stop: always;
+}
+
+.item-group > li {
+    scroll-snap-align: start;
 }
