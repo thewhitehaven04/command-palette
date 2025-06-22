@@ -12,7 +12,7 @@ const Palette = (props: {
                 <CommandPalette.Header>
                     <CommandPalette.Search />
                     <CommandPalette.TabsContainer>
-                        <CommandPalette.Tab tabName="F1">F1</CommandPalette.Tab>
+                        <CommandPalette.Tab tabName="F1">F1 cars of 2025</CommandPalette.Tab>
                         <CommandPalette.Tab tabName="WEC">WEC</CommandPalette.Tab>
                     </CommandPalette.TabsContainer>
                 </CommandPalette.Header>
@@ -20,6 +20,10 @@ const Palette = (props: {
                     <CommandPalette.Item searchTerm="SF-25">SF-25</CommandPalette.Item>
                     <CommandPalette.Item searchTerm="W16">W16</CommandPalette.Item>
                     <CommandPalette.Item searchTerm="RB21">RB21</CommandPalette.Item>
+                    <CommandPalette.Item searchTerm="MCL39">MCL39</CommandPalette.Item>
+                    <CommandPalette.Item searchTerm="AMR25">AMR25</CommandPalette.Item>
+                    <CommandPalette.Item searchTerm="VF-25">VF-25</CommandPalette.Item>
+                    <CommandPalette.Item searchTerm="FW47">FW47</CommandPalette.Item>
                 </CommandPalette.ItemGroup>
                 <CommandPalette.ItemGroup slice="WEC">
                     <CommandPalette.Item searchTerm="499P">499P</CommandPalette.Item>

@@ -3,6 +3,14 @@ li {
     padding: 0px;
 }
 
+.font {
+    color: rgba(93, 93, 93, 0.8);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 ul {
     padding: 0px;
     margin: 0px;
@@ -32,23 +40,27 @@ ul {
 
     border-radius: 8px;
     border: 1px solid gainsboro;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
 }
 
 .container-sm {
-    min-height: 300px;
-    min-width: 500px;
+    height: 350px;
+    width: 500px;
     padding: 16px;
 }
 
 .container-md {
-    min-height: 360px;
-    min-width: 560px;
+    height: 420px;
+    width: 560px;
     padding: 24px;
 }
 
 .container-lg {
-    min-height: 420px;
-    min-width: 650px;
+    height: 480px;
+    width: 650px;
     padding: 32px;
 }
 
@@ -56,12 +68,15 @@ input {
     appearance: none;
     padding-block: 4px;
     padding-left: 4px;
-    border-radius: 4px;
-    border: 1px solid gainsboro;
+    border: 0px;
+    border-bottom: 1px solid gainsboro;
+    padding-right: 64px;
+    height: 32px;
+    font-size: 24px;
 }
 
 input:focus {
-    outline: 1.7px solid rgba(136, 185, 215, 0.3);
+    outline: none;
 }
 
 button {
@@ -121,4 +136,43 @@ button {
 
 .mb-md {
     margin-bottom: 16px;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.w-max {
+    width: max-content;
+}
+
+kbd {
+    border-radius: 4px;
+    padding-block: 2px;
+    padding-inline: 4px;
+    border: 0.5px solid rgba(128, 128, 128, 0.4);
+    background-color: rgba(0, 0, 0, 0.07);
+    font-size: 12pt;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    justify-content: center;
+}
+
+.search-kbd {
+    width: max-content;
+    display: flex;
+    position: absolute;
+    right: 16px;
+    flex-direction: row;
+    height: min-content;
+    gap: 4px;
+}
+
+.item-group {
+    max-height: 100%; 
+    overflow-y: scroll;
 }

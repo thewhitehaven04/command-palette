@@ -1,7 +1,10 @@
+"use client"
 import React, {
     createContext,
     useContext,
+    useEffect,
     useMemo,
+    useRef,
     useState,
     type ComponentProps,
     type ReactNode,
@@ -54,10 +57,7 @@ const Container = ({ children, variant = "md", ...rest }: ICommandPaletteContain
     return (
         <div className={classes.overlay}>
             <div className={classes.transparent_overlay}></div>
-            <div
-                className={`${classes.container} ${classes.p_sm} ${variantMap[variant]}`}
-                {...rest}
-            >
+            <div className={`${classes.container} ${variantMap[variant]}`} {...rest}>
                 {children}
             </div>
         </div>
@@ -86,14 +86,38 @@ const Tab = ({ children, tabName, ...rest }: ComponentProps<"button"> & { tabNam
 
 const Search = (props: ComponentProps<"input">) => {
     const { searchTerm, setSearchTerm } = useContext(SearchTermContext)
+
+    const ref = useRef<HTMLInputElement>(null)
+
+    const userAgent = navigator.userAgent
+
+    useEffect(() => {
+        const listener = (evt: KeyboardEvent) => {
+            evt.stopPropagation()
+            if (evt.metaKey && evt.code === "KeyK") {
+                ref.current?.focus()
+            }
+        }
+        window.addEventListener("keyup", listener)
+
+        return () => window.removeEventListener("keyup", listener)
+    }, [])
+
+    const modifierKey = userAgent.includes("Mac") ? "⌘" : "⊞"
+
     return (
-        <div className={`${classes.stack} ${classes.sm_gap}}`}>
+        <div className={classes.search}>
             <input
                 type="text"
                 value={searchTerm || ""}
                 onChange={(evt) => setSearchTerm(evt.target.value)}
+                ref={ref}
+                className={`${classes["w-full"]} ${classes.font}`}
                 {...props}
             />
+            <div className={classes["search-kbd"]}>
+                <kbd>{modifierKey}</kbd> + <kbd>K</kbd>
+            </div>
         </div>
     )
 }
@@ -102,14 +126,16 @@ const ItemGroup = ({ children, slice }: { children: ReactNode; slice: string }) 
     const { slice: contextSlice } = useContext(SliceContext)
 
     return contextSlice === slice ? (
-        <ul className={`${classes.stack} ${classes["md-gap"]}`}>{children}</ul>
+        <ul className={`${classes.stack} ${classes["sm-gap"]} ${classes["item-group"]}`}>
+            {children}
+        </ul>
     ) : null
 }
 
 const Item = ({ children, searchTerm, className, ...rest }: ICommandPaletteItemProps) => {
     const { searchTerm: contextSearchTerm } = useContext(SearchTermContext)
     return (contextSearchTerm && searchTerm?.includes(contextSearchTerm)) || !contextSearchTerm ? (
-        <li className={`${classes.item} ${className}`} {...rest}>
+        <li className={`${classes.item} ${className || ""}`} {...rest}>
             {children}
         </li>
     ) : null
@@ -117,7 +143,9 @@ const Item = ({ children, searchTerm, className, ...rest }: ICommandPaletteItemP
 
 const Header = ({ children }: { children: ReactNode }) => {
     return (
-        <div className={`${classes.stack} ${classes["sm-gap"]} ${classes["mb-md"]}`}>
+        <div
+            className={`${classes.stack} ${classes["sm-gap"]} ${classes["mb-md"]} ${classes.font}`}
+        >
             {children}
         </div>
     )
