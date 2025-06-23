@@ -28,7 +28,7 @@ const Group = () => {
     })
 
     return data.map((item) => (
-        <CommandPalette.Item key={item} searchTerm={item}>
+        <CommandPalette.Item key={item} searchTerm={item} withFilter={true}>
             {item}
         </CommandPalette.Item>
     ))

@@ -6,4 +6,5 @@ export interface ICommandPaletteContainerProps extends ComponentProps<'div'> {
 
 export interface ICommandPaletteItemProps extends ComponentProps<'li'> {
     searchTerm: string
+    withFilter?: boolean
 }

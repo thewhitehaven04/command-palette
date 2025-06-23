@@ -128,7 +128,7 @@ const LoadingSpinner = () => {
         <div
             className={`${classes["spinner-container"]} ${classes["w-full"]} ${classes["h-full"]}`}
         >
-            <div className={`${classes.spinner}`}/>
+            <div className={`${classes.spinner}`} />
             <div className={classes["spinner-base"]} />
         </div>
     )
@@ -146,13 +146,29 @@ const ItemGroup = ({ children, slice }: { children: ReactNode; slice: string }) 
     ) : null
 }
 
-const Item = ({ children, searchTerm, className, ...rest }: ICommandPaletteItemProps) => {
+const Item = ({
+    children,
+    searchTerm,
+    className,
+    withFilter = false,
+    ...rest
+}: ICommandPaletteItemProps) => {
     const { searchTerm: contextSearchTerm } = useContext(SearchTermContext)
-    return (contextSearchTerm && searchTerm?.includes(contextSearchTerm)) || !contextSearchTerm ? (
+
+    if (withFilter) {
+        return (contextSearchTerm && searchTerm?.includes(contextSearchTerm)) ||
+            !contextSearchTerm ? (
+            <li className={`${classes.item} ${className || ""}`} {...rest}>
+                {children}
+            </li>
+        ) : null
+    }
+
+    return (
         <li className={`${classes.item} ${className || ""}`} {...rest}>
             {children}
         </li>
-    ) : null
+    )
 }
 
 const Header = ({ children }: { children: ReactNode }) => {
