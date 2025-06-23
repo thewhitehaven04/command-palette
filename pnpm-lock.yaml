@@ -27,15 +27,15 @@ importers:
       '@storybook/addon-docs':
         specifier: ^9.0.12
         version: 9.0.12(@types/react@19.1.8)(storybook@9.0.12(@testing-library/dom@10.4.0))
-      '@storybook/addon-onboarding':
-        specifier: ^9.0.12
-        version: 9.0.12(storybook@9.0.12(@testing-library/dom@10.4.0))
       '@storybook/addon-vitest':
         specifier: ^9.0.12
         version: 9.0.12(@vitest/browser@3.2.4(playwright@1.53.1)(vite@6.3.5)(vitest@3.2.4))(@vitest/runner@3.2.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@9.0.12(@testing-library/dom@10.4.0))(vitest@3.2.4(@vitest/browser@3.2.4))
       '@storybook/react-vite':
         specifier: ^9.0.12
         version: 9.0.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(rollup@4.44.0)(storybook@9.0.12(@testing-library/dom@10.4.0))(typescript@5.8.3)(vite@6.3.5)
+      '@tanstack/react-query':
+        specifier: 5.81.2
+        version: 5.81.2(react@19.1.0)
       '@types/react':
         specifier: ^19.1.2
         version: 19.1.8
@@ -578,11 +578,6 @@ packages:
     peerDependencies:
       storybook: ^9.0.12
 
-  '@storybook/addon-onboarding@9.0.12':
-    resolution: {integrity: sha512-hqgaINYMDiA2op+Cb77LvwdJkgpMUMAnp5ugJjkn5icLpSTkZxnaQrlC0lTHOZBxUjR5NlS2ApSAuMvrCXQLAw==}
-    peerDependencies:
-      storybook: ^9.0.12
-
   '@storybook/addon-vitest@9.0.12':
     resolution: {integrity: sha512-f3JPzQ9c7V06VsTFCNWzNmFhGvMPvZePVxPprzacEwAACU5GmRJ8lBqIFPyQALCMGKvaxqv0zbUwWEAsex7FQA==}
     peerDependencies:
@@ -646,6 +641,14 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  '@tanstack/query-core@5.81.2':
+    resolution: {integrity: sha512-QLYkPdrudoMATDFa3MiLEwRhNnAlzHWDf0LKaXUqJd0/+QxN8uTPi7bahRlxoAyH0UbLMBdeDbYzWALj7THOtw==}
+
+  '@tanstack/react-query@5.81.2':
+    resolution: {integrity: sha512-pe8kFlTrL2zFLlcAj2kZk9UaYYHDk9/1hg9EBaoO3cxDhOZf1FRGJeziSXKrVZyxIfs7b3aoOj/bw7Lie0mDUg==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@testing-library/dom@10.4.0':
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
@@ -2313,10 +2316,6 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@storybook/addon-onboarding@9.0.12(storybook@9.0.12(@testing-library/dom@10.4.0))':
-    dependencies:
-      storybook: 9.0.12(@testing-library/dom@10.4.0)
-
   '@storybook/addon-vitest@9.0.12(@vitest/browser@3.2.4(playwright@1.53.1)(vite@6.3.5)(vitest@3.2.4))(@vitest/runner@3.2.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@9.0.12(@testing-library/dom@10.4.0))(vitest@3.2.4(@vitest/browser@3.2.4))':
     dependencies:
       '@storybook/global': 5.0.0
@@ -2386,6 +2385,13 @@ snapshots:
       storybook: 9.0.12(@testing-library/dom@10.4.0)
     optionalDependencies:
       typescript: 5.8.3
+
+  '@tanstack/query-core@5.81.2': {}
+
+  '@tanstack/react-query@5.81.2(react@19.1.0)':
+    dependencies:
+      '@tanstack/query-core': 5.81.2
+      react: 19.1.0
 
   '@testing-library/dom@10.4.0':
     dependencies:

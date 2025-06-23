@@ -1,6 +1,7 @@
 "use client"
 import React, {
     createContext,
+    Suspense,
     useContext,
     useEffect,
     useMemo,
@@ -122,13 +123,26 @@ const Search = (props: ComponentProps<"input">) => {
     )
 }
 
+const LoadingSpinner = () => {
+    return (
+        <div
+            className={`${classes["spinner-container"]} ${classes["w-full"]} ${classes["h-full"]}`}
+        >
+            <div className={`${classes.spinner}`}/>
+            <div className={classes["spinner-base"]} />
+        </div>
+    )
+}
+
 const ItemGroup = ({ children, slice }: { children: ReactNode; slice: string }) => {
     const { slice: contextSlice } = useContext(SliceContext)
 
     return contextSlice === slice ? (
-        <ul className={`${classes.stack} ${classes["sm-gap"]} ${classes["item-group"]}`}>
-            {children}
-        </ul>
+        <Suspense fallback={<LoadingSpinner />}>
+            <ul className={`${classes.stack} ${classes["sm-gap"]} ${classes["item-group"]}`}>
+                {children}
+            </ul>
+        </Suspense>
     ) : null
 }
 

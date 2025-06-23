@@ -35,3 +35,21 @@ const Menu = () => (
     </CommandPalette.Container>
 )
 ```
+
+The component works with suspense. Fetch the data you need in an item group to display the loading state.
+
+
+```jsx
+const Group = () => {
+    const { data }: { data: string[] } = useSuspenseQuery({
+        queryKey: ["items"],
+        queryFn: async () => await fetchGroup(),
+    })
+
+    return data.map((item) => (
+        <CommandPalette.Item key={item} searchTerm={item}>
+            {item}
+        </CommandPalette.Item>
+    ))
+}
+```
