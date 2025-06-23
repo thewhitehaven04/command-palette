@@ -17,7 +17,7 @@ const fetchGroup = async () => {
                 "Item 7",
                 "Item 8",
             ])
-        }, 40000)
+        }, 5000)
     })
 }
 
