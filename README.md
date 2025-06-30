@@ -2,6 +2,9 @@
 
 A simple, composable and dependency-free implementation of a command palette.
 
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/44e5d8c3-bf85-491d-8cef-93829770ac7f" />
+
+
 ## How to use
 The component is composable. Use only what you need.
 
